@@ -1,6 +1,3 @@
-
-
-import argparse
 import csv
 import json
 import re
@@ -106,11 +103,11 @@ class DDLConverter:
                 if insert_line:
                     values = insert_line.group("values")
                     records.append(self.parse_insert_values(values, table_schema))
-        if output_format == "csv":
+        if self.output_format == "csv":
             self.write_to_csv(self.output_file, records, table_schema)
-        if output_format == "json":
+        if self.output_format == "json":
             self.write_to_json(self.output_file, records, table_schema)
-        if output_format == "avro":
+        if self.output_format == "avro":
             self.write_to_avro(self.output_file, records, table_schema)
 
     def write_to_csv(self, output_file, records, table_schema):
@@ -124,12 +121,12 @@ class DDLConverter:
             csv_writer.writeheader()
             csv_writer.writerows(records)
 
-    def write_to_json(self, output_field, records, table_schema):
+    def write_to_json(self, output_file, records, table_schema):
         with open(output_file, "w") as out_fp:
             for record in records:
                 out_fp.write(json.dumps(record) + "\n")
 
-    def write_to_avro(self, output_field, records, table_schema):
+    def write_to_avro(self, output_file, records, table_schema):
         with open(output_file, "wb") as out_fp:
             schema = table_schema.get_avro_schema()
             fastavro.writer(out_fp, schema, records)
