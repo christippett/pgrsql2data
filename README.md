@@ -1,4 +1,4 @@
-Intertec TimePro Utils
+PgrSQL2Data
 =============================================================
 
 [![PyPI version](https://img.shields.io/pypi/v/pgrsql2data.svg)](https://pypi.python.org/pypi/pgrsql2data)
