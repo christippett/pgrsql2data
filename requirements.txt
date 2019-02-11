@@ -1,0 +1,9 @@
+# Required
+geomet
+fastavro
+
+# Dev
+black
+coverage
+pytest
+pytest-cov
